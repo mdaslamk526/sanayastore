@@ -538,14 +538,23 @@ img { max-width: 100%; display: block; }
   grid-template-columns: 1fr 1.2fr;
   gap: 60px;
   align-items: center;
+  scroll-margin-top: 80px;
 }
 .about-img-wrap {
   border-radius: 20px;
   overflow: hidden;
   aspect-ratio: 3/4;
   box-shadow: var(--shadow-lg);
+  max-width: 440px;
+  margin: 0 auto;
 }
-.about-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.about-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
 .about-text h2 {
   font-family: var(--serif);
   font-size: 36px;
@@ -857,16 +866,105 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 768px) {
   .nav { display: none; }
-  .search-wrap input { width: 150px; }
-  .hero { grid-template-columns: 1fr; padding: 32px 16px 24px; min-height: auto; }
-  .hero-image-wrap { order: -1; }
-  .hero-floating-card { right: 0; top: 16px; }
-  .hero-content h1 { font-size: 32px; }
-  .trust-bar { gap: 20px; }
+  .search-wrap input { width: 140px; }
+  
+  /* Hero Mobile: Perfectly Proportioned & Centered */
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 24px 16px 36px;
+    gap: 28px;
+    min-height: auto;
+    text-align: center;
+  }
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-content h1 {
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  .hero-content p {
+    font-size: 14.5px;
+    margin: 0 auto 24px;
+    max-width: 330px;
+  }
+  .hero-btns {
+    justify-content: center;
+    margin-bottom: 24px;
+    gap: 10px;
+  }
+  .hero-badges {
+    justify-content: center;
+    gap: 16px;
+  }
+  .hero-image-wrap {
+    order: -1;
+    max-width: 320px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .hero-img-frame {
+    aspect-ratio: 3/4;
+    border-radius: 18px;
+    box-shadow: 0 10px 32px rgba(0,0,0,0.12);
+  }
+  .hero-img {
+    object-position: center top;
+  }
+  .hero-floating-card {
+    right: 8px;
+    top: 12px;
+    padding: 8px 12px;
+    font-size: 11.5px;
+    gap: 8px;
+  }
+  .hero-floating-card strong {
+    font-size: 12px;
+  }
+
+  .trust-bar { gap: 18px; padding: 20px 16px; }
   .section { padding: 40px 16px; }
-  .sale-banner { flex-direction: column; padding: 40px 24px; text-align: center; align-items: center; }
-  .about-section { grid-template-columns: 1fr; }
-  .about-img-wrap { aspect-ratio: 4/3; }
+  .sale-banner { flex-direction: column; padding: 36px 20px; text-align: center; align-items: center; }
+
+  /* About Section Mobile: Centered, Beautifully Aligned & Full Portrait View */
+  .about-section {
+    grid-template-columns: 1fr;
+    padding: 40px 16px;
+    gap: 24px;
+    text-align: center;
+  }
+  .about-img-wrap {
+    aspect-ratio: 3/4;
+    max-width: 290px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 18px;
+    box-shadow: 0 10px 32px rgba(0,0,0,0.12);
+  }
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .about-text h2 {
+    font-size: 26px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+  }
+  .about-text p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    max-width: 380px;
+    margin: 0 auto 12px;
+  }
+  .about-text .btn-primary {
+    margin-top: 8px;
+  }
+
   .footer-inner { grid-template-columns: 1fr 1fr; padding: 40px 16px; }
   .footer-brand { grid-column: 1 / -1; }
   .footer-bottom-inner { flex-direction: column; text-align: center; }
