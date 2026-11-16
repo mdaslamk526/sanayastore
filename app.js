@@ -98,6 +98,20 @@ function card(p) {
   return article;
 }
 
+// ── Category Selection & Smooth Scroll ───
+function selectCategory(c, shouldScroll = true) {
+  category = c;
+  renderChips();
+  render();
+  if (shouldScroll) {
+    const picksSection = document.getElementById("picks");
+    if (picksSection) {
+      picksSection.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+}
+window.selectCategory = selectCategory;
+
 // ── Render ───────────────────────────────
 function render() {
   const q    = query.trim().toLowerCase();
@@ -108,6 +122,16 @@ function render() {
   });
   grid.replaceChildren(...list.map(card));
   empty.hidden = list.length > 0;
+
+  // Update Section Title & Reset button dynamically
+  const titleEl = document.getElementById("picks-title");
+  if (titleEl) {
+    titleEl.textContent = category === "All" ? "All Picks" : `${category} (${list.length} picks)`;
+  }
+  const resetBtn = document.getElementById("reset-filter-btn");
+  if (resetBtn) {
+    resetBtn.style.display = category === "All" ? "none" : "inline-flex";
+  }
 }
 
 function renderBest() {
@@ -136,9 +160,7 @@ function renderChips() {
       );
       btn.append(icon, label, count);
       btn.addEventListener("click", () => {
-        category = c;
-        renderChips();
-        render();
+        selectCategory(c, true);
       });
       return btn;
     })

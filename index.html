@@ -126,8 +126,11 @@
   <!-- ░░ ALL PICKS ░░ -->
   <section class="section" id="picks">
     <div class="section-head">
-      <h2>All Picks</h2>
-      <a href="#picks" class="view-all">View all →</a>
+      <h2 id="picks-title">All Picks</h2>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <button type="button" class="view-all" id="reset-filter-btn" style="display:none;background:none;border:none;cursor:pointer;font-family:inherit;" onclick="selectCategory('All', false)">✕ Show All</button>
+        <a href="#picks" class="view-all" onclick="selectCategory('All', false)">View all →</a>
+      </div>
     </div>
     <div class="grid" id="grid"></div>
     <p class="empty" id="empty" hidden>No picks found. Try another word or category.</p>
@@ -215,10 +218,10 @@
     </div>
     <div class="footer-col">
       <h4>Shop</h4>
-      <a href="#picks">All Picks</a>
-      <a href="#categories">Dresses</a>
-      <a href="#categories">Makeup</a>
-      <a href="#categories">Gadgets</a>
+      <a href="#picks" onclick="selectCategory('All')">All Picks</a>
+      <a href="#picks" onclick="selectCategory('Dresses')">Dresses</a>
+      <a href="#picks" onclick="selectCategory('Makeup')">Makeup</a>
+      <a href="#picks" onclick="selectCategory('Gadgets')">Gadgets</a>
     </div>
     <div class="footer-col">
       <h4>Customer Care</h4>
