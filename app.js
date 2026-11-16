@@ -7,6 +7,7 @@ const INSTAGRAM_URL = "https://www.instagram.com/_sanaya_jsr_/";
 // Category icons mapping
 const CAT_ICONS = {
   "All":     "🛍️",
+  "Tops":    "👚",
   "Dresses": "👗",
   "Makeup":  "💄",
   "Gadgets": "📱",
@@ -93,7 +94,12 @@ function card(p) {
   buy.rel     = "sponsored noopener noreferrer";
   buy.setAttribute("aria-label", `Buy ${p.name} on ${p.shop}`);
 
-  body.append(stars, title, price, buy);
+  if (p.desc) {
+    const desc = el("div", "card-desc", p.desc);
+    body.append(stars, title, desc, price, buy);
+  } else {
+    body.append(stars, title, price, buy);
+  }
   article.append(photo, body);
   return article;
 }

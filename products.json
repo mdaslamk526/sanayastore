@@ -1,6 +1,17 @@
 [
   {
+    "name": "Stylish Half Sleeves Sticker Printed Collar Top",
+    "desc": "Cotton Blend • Short Sleeves • Sizes: XS, S, M, L • Pink Bow Detail",
+    "price": "₹299",
+    "shop": "Meesho",
+    "category": "Tops",
+    "image": "images/bow-collar-top.jpg",
+    "link": "https://www.meesho.com/af_invite/89391751:youtube_long_form:16219216?p_id=527691690&ext_id=8q69ii&utm_source=youtube_long_form",
+    "best": true
+  },
+  {
     "name": "Floral Wrap Dress",
+    "desc": "Breathable summer fabric with flattering wrap waist",
     "price": "₹799",
     "shop": "Amazon",
     "category": "Dresses",
@@ -10,6 +21,7 @@
   },
   {
     "name": "Maybelline Fit Me Foundation",
+    "desc": "Matte + Poreless liquid foundation with SPF",
     "price": "₹349",
     "shop": "Meesho",
     "category": "Makeup",
@@ -19,6 +31,7 @@
   },
   {
     "name": "Boat Airdopes 141",
+    "desc": "42H playtime, low latency gaming & ENx tech",
     "price": "₹1,299",
     "shop": "Flipkart",
     "category": "Gadgets",
@@ -28,6 +41,7 @@
   },
   {
     "name": "Ethnic Kurti Set",
+    "desc": "Pure cotton printed kurti with matching pant",
     "price": "₹599",
     "shop": "Meesho",
     "category": "Dresses",
@@ -37,15 +51,17 @@
   },
   {
     "name": "Lakme Cushion Compact",
+    "desc": "Longwear brightening compact powder",
     "price": "₹449",
     "shop": "Amazon",
     "category": "Makeup",
     "image": "",
     "link": "https://www.amazon.in/",
-    "best": true
+    "best": false
   },
   {
     "name": "Fastrack Smartwatch",
+    "desc": "1.83\" HD display with Bluetooth calling",
     "price": "₹2,499",
     "shop": "Flipkart",
     "category": "Gadgets",
