@@ -6,16 +6,17 @@ const INSTAGRAM_URL = "https://www.instagram.com/_sanaya_jsr_/";
 
 // Category icons mapping
 const CAT_ICONS = {
-  "All":     "🛍️",
-  "Tops":    "👚",
-  "Dresses": "👗",
-  "Makeup":  "💄",
-  "Gadgets": "📱",
-  "Shoes":   "👠",
-  "Bags":    "👜",
-  "Skincare":"✨",
-  "Jewelry": "💍",
-  "Fitness": "🏋️",
+  "All":        "🛍️",
+  "Tops":       "👚",
+  "Jackets":    "🧥",
+  "Dresses":    "👗",
+  "Makeup":     "💄",
+  "Gadgets":    "📱",
+  "Shoes":      "👠",
+  "Bags":       "👜",
+  "Skincare":   "✨",
+  "Jewelry":    "💍",
+  "Fitness":    "🏋️",
 };
 
 // Set all Instagram links

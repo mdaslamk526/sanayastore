@@ -1,5 +1,25 @@
 [
   {
+    "name": "ALONE Printed Cropped Sweatshirt",
+    "desc": "Fleece • Metal Ring Zipper • Sizes: S, M, L, XL • Forest Green",
+    "price": "₹360",
+    "shop": "Meesho",
+    "category": "Tops",
+    "image": "images/alone-green-sweatshirt.jpg",
+    "link": "https://www.meesho.com/af_invite/89391751:instagram_stories:16219255?p_id=1148032842&ext_id=izibt6&utm_source=instagram_stories",
+    "best": true
+  },
+  {
+    "name": "Trendy Washed Denim Crop Jacket",
+    "desc": "Pure Denim • Charcoal Grey Wash • Button Closure • Sizes: S, M, L, XL",
+    "price": "₹353",
+    "shop": "Meesho",
+    "category": "Jackets",
+    "image": "images/cropped-denim-jacket.jpg",
+    "link": "https://www.meesho.com/af_invite/89391751:instagram_stories:16219269?p_id=478892620&ext_id=7x4bws&utm_source=instagram_stories",
+    "best": true
+  },
+  {
     "name": "Stylish Half Sleeves Sticker Printed Collar Top",
     "desc": "Cotton Blend • Short Sleeves • Sizes: XS, S, M, L • Pink Bow Detail",
     "price": "₹186",
