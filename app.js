@@ -173,18 +173,32 @@ search.addEventListener("input", () => {
   render();
 });
 
-function handleNL(e) {
+function handleProductRequest(e) {
   e.preventDefault();
-  const input = e.target.querySelector("input");
-  const btn   = e.target.querySelector("button");
-  btn.textContent = "Subscribed! 🎉";
-  btn.style.background = "#22c55e";
-  input.value = "";
-  setTimeout(() => {
-    btn.textContent = "Subscribe";
-    btn.style.background = "";
-  }, 3000);
+  const input = document.getElementById("req-product-input");
+  const val = input ? input.value.trim() : "";
+  const btn = e.target.querySelector("button");
+
+  if (btn) {
+    btn.innerHTML = `<span>Opening DM... 💌</span>`;
+    setTimeout(() => {
+      btn.innerHTML = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+        <span>Request on Instagram DM</span>
+      `;
+    }, 2500);
+  }
+
+  // If user entered a query, copy formatted message so they can simply paste in DM
+  if (val && navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(`Hi Sanaya! Can you please share the best link for: "${val}"?`).catch(() => {});
+  }
+
+  // Direct Instagram DM link
+  const dmUrl = "https://ig.me/m/_sanaya_jsr_";
+  window.open(dmUrl, "_blank", "noopener,noreferrer");
 }
+window.handleProductRequest = handleProductRequest;
 
 // ── Modals: Terms & Trust ────────────────
 const modalOverlay = document.getElementById("modal-overlay");
