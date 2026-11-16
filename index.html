@@ -33,13 +33,21 @@
     </nav>
 
     <div class="header-actions">
-      <div class="search-wrap">
-        <input id="search" type="search" placeholder="Search picks…" autocomplete="off" aria-label="Search products">
-        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      </div>
+      <form class="search-form-wrap" id="search-form" onsubmit="handleSearchSubmit(event)">
+        <div class="search-wrap">
+          <input id="search" type="search" placeholder="Search tops, jackets…" autocomplete="off" aria-label="Search products">
+          <button type="button" id="clear-search-btn" class="search-clear-btn" onclick="clearSearch()" aria-label="Clear search">✕</button>
+          <button type="submit" class="search-submit-btn" aria-label="Submit search">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </button>
+        </div>
+      </form>
       <a class="icon-btn" id="insta-link" href="https://www.instagram.com/_sanaya_jsr_/" target="_blank" rel="noopener noreferrer" aria-label="Sanaya on Instagram @_sanaya_jsr_">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
       </a>
+      <button class="menu-btn" id="menu-btn" onclick="toggleDrawer()" aria-label="Navigation Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
@@ -256,6 +264,44 @@
     </div>
   </div>
 </footer>
+
+<!-- ░░ SIDE NAVIGATION DRAWER ░░ -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+<aside class="drawer" id="drawer" aria-label="Side Navigation Menu">
+  <div class="drawer-header">
+    <div class="logo">Sanaya <em>Store</em></div>
+    <button class="drawer-close" onclick="closeDrawer()" aria-label="Close menu">✕</button>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-group">
+      <h4>Categories</h4>
+      <div class="drawer-links">
+        <button class="drawer-link" onclick="drawerSelectCategory('All')"><span class="d-icon">🛍️</span> All Products <span class="drawer-badge-pill" id="drawer-count-all">All</span></button>
+        <button class="drawer-link" onclick="drawerSelectCategory('Tops')"><span class="d-icon">👚</span> Tops & Tunics</button>
+        <button class="drawer-link" onclick="drawerSelectCategory('Jackets')"><span class="d-icon">🧥</span> Jackets & Outerwear</button>
+        <button class="drawer-link" onclick="drawerSelectCategory('Dresses')"><span class="d-icon">👗</span> Dresses</button>
+        <button class="drawer-link" onclick="drawerSelectCategory('Makeup')"><span class="d-icon">💄</span> Makeup</button>
+        <button class="drawer-link" onclick="drawerSelectCategory('Gadgets')"><span class="d-icon">📱</span> Gadgets</button>
+      </div>
+    </div>
+    <div class="drawer-group">
+      <h4>Explore Sanaya Store</h4>
+      <div class="drawer-links">
+        <a class="drawer-link" href="#bestsellers" onclick="closeDrawer()"><span class="d-icon">⭐</span> Best Sellers</a>
+        <a class="drawer-link" href="#request" onclick="closeDrawer()"><span class="d-icon">💬</span> Request Any Product (DM)</a>
+        <a class="drawer-link" href="#about" onclick="closeDrawer()"><span class="d-icon">👤</span> About Sanaya</a>
+        <a class="drawer-link" href="#trust-promise" onclick="closeDrawer()"><span class="d-icon">🛡️</span> Quality & Trust Promise</a>
+        <button class="drawer-link" onclick="closeDrawer(); openTermsModal();"><span class="d-icon">📜</span> Terms & Conditions</button>
+      </div>
+    </div>
+  </div>
+  <div class="drawer-footer">
+    <p>Curated with ❤️ by Sanaya</p>
+    <a href="https://www.instagram.com/_sanaya_jsr_/" target="_blank" rel="noopener noreferrer" class="drawer-insta-btn">
+      <span>Follow @_sanaya_jsr_</span> ↗
+    </a>
+  </div>
+</aside>
 
 <!-- ░░ TERMS & TRUST MODAL ░░ -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">

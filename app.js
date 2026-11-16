@@ -41,6 +41,14 @@ function el(tag, className, text) {
   if (text !== undefined) node.textContent = text;
   return node;
 }
+function escapeHtml(str) {
+  return (str || "").replace(/[&<>"']/g, m => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[m]));
+}
+function escapeAttr(str) {
+  return (str || "").replace(/'/g, "\\'").replace(/"/g, "&quot;");
+}
 function safeUrl(url) {
   try {
     const u = new URL(url);
@@ -105,6 +113,61 @@ function card(p) {
   return article;
 }
 
+// ── Drawer Functions ─────────────────────
+function toggleDrawer() {
+  const d = document.getElementById("drawer");
+  const o = document.getElementById("drawer-overlay");
+  if (d && o) {
+    const isOpen = d.classList.toggle("active");
+    o.classList.toggle("active", isOpen);
+    document.body.style.overflow = isOpen ? "hidden" : "";
+  }
+}
+function closeDrawer() {
+  const d = document.getElementById("drawer");
+  const o = document.getElementById("drawer-overlay");
+  if (d && o) {
+    d.classList.remove("active");
+    o.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+}
+function drawerSelectCategory(cat) {
+  closeDrawer();
+  selectCategory(cat, true);
+}
+window.toggleDrawer = toggleDrawer;
+window.closeDrawer = closeDrawer;
+window.drawerSelectCategory = drawerSelectCategory;
+
+// ── Search & Empty State ──────────────────
+function handleSearchSubmit(e) {
+  if (e) e.preventDefault();
+  query = (search ? search.value : "").trim();
+  const clearBtn = document.getElementById("clear-search-btn");
+  if (clearBtn) clearBtn.style.display = query ? "block" : "none";
+  render();
+  const picksSection = document.getElementById("picks");
+  if (picksSection) {
+    picksSection.scrollIntoView({ behavior: "smooth" });
+  }
+}
+function clearSearch() {
+  if (search) search.value = "";
+  query = "";
+  const clearBtn = document.getElementById("clear-search-btn");
+  if (clearBtn) clearBtn.style.display = "none";
+  render();
+}
+function trackEmptyRequest(item) {
+  if (item && navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(`Hi Sanaya! Mujhe "${item}" chahiye tha, kya aap iska best link share kar sakti hain?`).catch(() => {});
+  }
+}
+window.handleSearchSubmit = handleSearchSubmit;
+window.clearSearch = clearSearch;
+window.trackEmptyRequest = trackEmptyRequest;
+
 // ── Category Selection & Smooth Scroll ───
 function selectCategory(c, shouldScroll = true) {
   category = c;
@@ -124,20 +187,51 @@ function render() {
   const q    = query.trim().toLowerCase();
   const list = products.filter(p => {
     const inCat  = category === "All" || p.category === category;
-    const inText = !q || (p.name + " " + p.category + " " + p.shop).toLowerCase().includes(q);
+    const inText = !q || (p.name + " " + p.category + " " + (p.desc || "") + " " + p.shop).toLowerCase().includes(q);
     return inCat && inText;
   });
-  grid.replaceChildren(...list.map(card));
-  empty.hidden = list.length > 0;
+
+  if (list.length > 0) {
+    grid.replaceChildren(...list.map(card));
+    empty.hidden = true;
+  } else {
+    if (q) {
+      const emptyCard = document.createElement("div");
+      emptyCard.className = "search-empty-card";
+      emptyCard.innerHTML = `
+        <div class="sec-icon">🔍</div>
+        <h3>"${escapeHtml(query.trim())}" abhi available nahi hai</h3>
+        <p>Aapne jo dhoonda wo abhi Sanaya Store par list nahi hai.</p>
+        <p class="sec-promise">Lekin fikar mat kijiye — hum ise jald se jald Sanaya Store par laane ki poori koshish karenge! 💖</p>
+        <div class="search-empty-actions">
+          <a href="https://ig.me/m/_sanaya_jsr_" target="_blank" rel="noopener noreferrer" class="btn-primary search-empty-btn" onclick="trackEmptyRequest('${escapeAttr(query.trim())}')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+            Request "${escapeHtml(query.trim())}" on Instagram DM 💌
+          </a>
+          <button type="button" class="btn-outline search-reset-btn" onclick="clearSearch()">Saare Products Dekhein →</button>
+        </div>
+      `;
+      grid.replaceChildren(emptyCard);
+      empty.hidden = true;
+    } else {
+      grid.replaceChildren();
+      empty.textContent = "Is category me abhi koi product nahi hai. Jald hi naye picks add honge!";
+      empty.hidden = false;
+    }
+  }
 
   // Update Section Title & Reset button dynamically
   const titleEl = document.getElementById("picks-title");
   if (titleEl) {
-    titleEl.textContent = category === "All" ? "All Picks" : `${category} (${list.length} picks)`;
+    if (query.trim()) {
+      titleEl.textContent = list.length ? `Search: "${query.trim()}" (${list.length} found)` : `Search: "${query.trim()}"`;
+    } else {
+      titleEl.textContent = category === "All" ? "All Picks" : `${category} (${list.length} picks)`;
+    }
   }
   const resetBtn = document.getElementById("reset-filter-btn");
   if (resetBtn) {
-    resetBtn.style.display = category === "All" ? "none" : "inline-flex";
+    resetBtn.style.display = (category !== "All" || query.trim()) ? "inline-flex" : "none";
   }
 }
 
@@ -154,6 +248,8 @@ function renderChips() {
   products.forEach(p => {
     catCounts[p.category] = (catCounts[p.category] || 0) + 1;
   });
+  const allCountEl = document.getElementById("drawer-count-all");
+  if (allCountEl) allCountEl.textContent = `${products.length} picks`;
   const cats = ["All", ...new Set(products.map(p => p.category))];
   chipsBox.replaceChildren(
     ...cats.map(c => {
@@ -175,10 +271,20 @@ function renderChips() {
 }
 
 // ── Events ───────────────────────────────
-search.addEventListener("input", () => {
-  query = search.value;
-  render();
-});
+if (search) {
+  search.addEventListener("input", () => {
+    query = search.value.trim();
+    const clearBtn = document.getElementById("clear-search-btn");
+    if (clearBtn) clearBtn.style.display = query ? "block" : "none";
+    render();
+    if (query.length >= 2) {
+      const picksSection = document.getElementById("picks");
+      if (picksSection) {
+        picksSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  });
+}
 
 function handleProductRequest(e) {
   e.preventDefault();
@@ -265,10 +371,16 @@ function closeModal(e) {
   }
 }
 
-// Close on Escape key
+// Close on Escape key (Modals and Drawer)
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && modalOverlay && modalOverlay.classList.contains("active")) {
-    closeModal();
+  if (e.key === "Escape") {
+    if (modalOverlay && modalOverlay.classList.contains("active")) {
+      closeModal();
+    }
+    const d = document.getElementById("drawer");
+    if (d && d.classList.contains("active")) {
+      closeDrawer();
+    }
   }
 });
 
