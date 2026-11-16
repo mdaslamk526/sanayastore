@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Floral Wrap Dress",
+    "price": "₹799",
+    "shop": "Amazon",
+    "category": "Dresses",
+    "image": "images/sample-dress.jpg",
+    "link": "https://www.amazon.in/",
+    "best": true
+  },
+  {
+    "name": "Maybelline Fit Me Foundation",
+    "price": "₹349",
+    "shop": "Meesho",
+    "category": "Makeup",
+    "image": "images/sample-lipstick.jpg",
+    "link": "https://www.meesho.com/",
+    "best": true
+  },
+  {
+    "name": "Boat Airdopes 141",
+    "price": "₹1,299",
+    "shop": "Flipkart",
+    "category": "Gadgets",
+    "image": "images/sample-earbuds.jpg",
+    "link": "https://www.flipkart.com/",
+    "best": true
+  },
+  {
+    "name": "Ethnic Kurti Set",
+    "price": "₹599",
+    "shop": "Meesho",
+    "category": "Dresses",
+    "image": "",
+    "link": "https://www.meesho.com/",
+    "best": false
+  },
+  {
+    "name": "Lakme Cushion Compact",
+    "price": "₹449",
+    "shop": "Amazon",
+    "category": "Makeup",
+    "image": "",
+    "link": "https://www.amazon.in/",
+    "best": true
+  },
+  {
+    "name": "Fastrack Smartwatch",
+    "price": "₹2,499",
+    "shop": "Flipkart",
+    "category": "Gadgets",
+    "image": "",
+    "link": "https://www.flipkart.com/",
+    "best": false
+  }
+]
