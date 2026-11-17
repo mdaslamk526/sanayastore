@@ -1,0 +1,24 @@
+{
+  "name": "Sanaya Store",
+  "short_name": "Sanaya",
+  "description": "Curated fashion, tops, jackets, dresses and lifestyle finds by Sanaya.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbfbf8",
+  "theme_color": "#3d5a47",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

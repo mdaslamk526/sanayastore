@@ -4,6 +4,13 @@
 // ══════════════════════════════════════
 const INSTAGRAM_URL = "https://www.instagram.com/_sanaya_jsr_/";
 
+// ── Register Service Worker for Instant Load & Offline Access ──
+if ("serviceWorker" in navigator && (window.location.protocol === "https:" || window.location.hostname === "localhost")) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
+  });
+}
+
 // Category icons mapping
 const CAT_ICONS = {
   "All":        "🛍️",
@@ -83,8 +90,11 @@ function card(p) {
   if (p.image) {
     const img   = document.createElement("img");
     img.src     = p.image;
-    img.alt     = "";
+    img.alt     = p.name || "Sanaya Store Product";
     img.loading = "lazy";
+    img.decoding = "async";
+    img.width   = 400;
+    img.height  = 400;
     img.onerror = () => img.remove();
     photo.appendChild(img);
   }
@@ -472,16 +482,34 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// ── Load products ────────────────────────
+// ── Load products (Instant local cache restore + Background sync) ──
+try {
+  const cachedProducts = localStorage.getItem("sanaya_products_cache");
+  if (cachedProducts) {
+    const parsed = JSON.parse(cachedProducts);
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      products = parsed;
+      renderChips();
+      render();
+      renderBest();
+    }
+  }
+} catch (e) {}
+
 fetch("products.json")
   .then(r => r.json())
   .then(data => {
     products = data;
+    try {
+      localStorage.setItem("sanaya_products_cache", JSON.stringify(data));
+    } catch (e) {}
     renderChips();
     render();
     renderBest();
   })
   .catch(() => {
-    empty.textContent = "Could not load products. Please refresh.";
-    empty.hidden = false;
+    if (!products || products.length === 0) {
+      empty.textContent = "Could not load products. Please refresh.";
+      empty.hidden = false;
+    }
   });
