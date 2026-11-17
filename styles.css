@@ -1346,7 +1346,6 @@ img {
 
 /* ══════ RESPONSIVE ══════ */
 @media (max-width: 1024px) {
-  .hero-floating-card { right: 0; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
   .tg-cards { grid-template-columns: 1fr; }
 }

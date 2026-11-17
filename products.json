@@ -35,7 +35,7 @@
     "price": "₹799",
     "shop": "Amazon",
     "category": "Dresses",
-    "image": "images/sample-dress.jpg",
+    "image": "",
     "link": "https://www.amazon.in/",
     "best": true
   },
@@ -45,7 +45,7 @@
     "price": "₹349",
     "shop": "Meesho",
     "category": "Makeup",
-    "image": "images/sample-lipstick.jpg",
+    "image": "",
     "link": "https://www.meesho.com/",
     "best": true
   },
@@ -55,7 +55,7 @@
     "price": "₹1,299",
     "shop": "Flipkart",
     "category": "Gadgets",
-    "image": "images/sample-earbuds.jpg",
+    "image": "",
     "link": "https://www.flipkart.com/",
     "best": true
   },
