@@ -72,21 +72,81 @@
     </div>
 
     <div class="hero-image-wrap">
-      <a href="https://www.instagram.com/_sanaya_jsr_/" target="_blank" rel="noopener noreferrer" class="hero-img-frame hero-insta-link" aria-label="Visit Sanaya on Instagram @_sanaya_jsr_">
-        <img src="images/hero.jpg" alt="Sanaya (@_sanaya_jsr_)" class="hero-img">
-        <div class="hero-tag">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
-          @_sanaya_jsr_ ↗
+      <div class="hero-slider" id="hero-slider" aria-label="Top Deals & Offers Slider">
+        <div class="hero-slides-track" id="hero-slides-track">
+
+          <!-- Slide 1: Bow Collar Top -->
+          <div class="hero-slide" data-index="0">
+            <div class="hero-slide-badge">⚡ Deal of the Day • Flat 80% OFF</div>
+            <a href="https://www.meesho.com/af_invite/89391751:youtube_long_form:16219216?p_id=527691690&ext_id=8q69ii&utm_source=youtube_long_form" target="_blank" rel="sponsored noopener noreferrer" class="hero-slide-link" aria-label="Stylish Bow Collar Top - ₹186">
+              <img src="images/bow-collar-top.jpg" alt="Stylish Bow Collar Top" class="hero-slide-img">
+              <div class="hero-slide-glass">
+                <div class="hsg-meta">
+                  <span class="hsg-tag">Hot Pick 💖</span>
+                  <h4 class="hsg-title">Stylish Bow Collar Top</h4>
+                  <div class="hsg-price-row">
+                    <span class="hsg-price">₹186</span>
+                    <span class="hsg-mrp">₹899</span>
+                    <span class="hsg-discount">80% OFF</span>
+                  </div>
+                </div>
+                <span class="hsg-action">Buy Now ↗</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Slide 2: ALONE Cropped Sweatshirt -->
+          <div class="hero-slide" data-index="1">
+            <div class="hero-slide-badge">🔥 Winter Deal • Trending Now</div>
+            <a href="https://www.meesho.com/af_invite/89391751:instagram_stories:16219255?p_id=1148032842&ext_id=izibt6&utm_source=instagram_stories" target="_blank" rel="sponsored noopener noreferrer" class="hero-slide-link" aria-label="ALONE Printed Cropped Sweatshirt - ₹360">
+              <img src="images/alone-green-sweatshirt.jpg" alt="ALONE Printed Cropped Sweatshirt" class="hero-slide-img">
+              <div class="hero-slide-glass">
+                <div class="hsg-meta">
+                  <span class="hsg-tag">Winter Trend ✨</span>
+                  <h4 class="hsg-title">ALONE Cropped Sweatshirt</h4>
+                  <div class="hsg-price-row">
+                    <span class="hsg-price">₹360</span>
+                    <span class="hsg-mrp">₹1,199</span>
+                    <span class="hsg-discount">70% OFF</span>
+                  </div>
+                </div>
+                <span class="hsg-action">Buy Now ↗</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Slide 3: Denim Crop Jacket -->
+          <div class="hero-slide" data-index="2">
+            <div class="hero-slide-badge">⭐ Bestseller • Limited Stock</div>
+            <a href="https://www.meesho.com/af_invite/89391751:instagram_stories:16219269?p_id=478892620&ext_id=7x4bws&utm_source=instagram_stories" target="_blank" rel="sponsored noopener noreferrer" class="hero-slide-link" aria-label="Trendy Washed Denim Crop Jacket - ₹353">
+              <img src="images/cropped-denim-jacket.jpg" alt="Trendy Washed Denim Crop Jacket" class="hero-slide-img">
+              <div class="hero-slide-glass">
+                <div class="hsg-meta">
+                  <span class="hsg-tag">Editor's Pick 🧥</span>
+                  <h4 class="hsg-title">Washed Denim Crop Jacket</h4>
+                  <div class="hsg-price-row">
+                    <span class="hsg-price">₹353</span>
+                    <span class="hsg-mrp">₹1,299</span>
+                    <span class="hsg-discount">73% OFF</span>
+                  </div>
+                </div>
+                <span class="hsg-action">Buy Now ↗</span>
+              </div>
+            </a>
+          </div>
+
         </div>
-      </a>
-      <a href="https://www.instagram.com/_sanaya_jsr_/" target="_blank" rel="noopener noreferrer" class="hero-floating-card hero-insta-link" aria-label="Follow @_sanaya_jsr_ on Instagram">
-        <div class="fc-dot"></div>
-        <div>
-          <strong>@_sanaya_jsr_</strong>
-          <small>Follow on Instagram ✨</small>
+
+        <!-- Slider Controls: Arrows & Dots -->
+        <button type="button" class="slider-arrow prev" onclick="moveHeroSlide(-1)" aria-label="Previous Offer Slide">‹</button>
+        <button type="button" class="slider-arrow next" onclick="moveHeroSlide(1)" aria-label="Next Offer Slide">›</button>
+
+        <div class="slider-dots" id="slider-dots">
+          <button type="button" class="slider-dot active" onclick="gotoHeroSlide(0)" aria-label="Slide 1"></button>
+          <button type="button" class="slider-dot" onclick="gotoHeroSlide(1)" aria-label="Slide 2"></button>
+          <button type="button" class="slider-dot" onclick="gotoHeroSlide(2)" aria-label="Slide 3"></button>
         </div>
-        <span class="fc-arrow">→</span>
-      </a>
+      </div>
     </div>
   </section>
 

@@ -113,6 +113,94 @@ function card(p) {
   return article;
 }
 
+// ── Hero Offer Slider (5s Auto-Scroll & Touch/Click Controls) ──
+let heroCurrentSlide = 0;
+let heroSliderTimer = null;
+const HERO_SLIDE_COUNT = 3;
+
+function updateHeroSlider(index) {
+  heroCurrentSlide = (index + HERO_SLIDE_COUNT) % HERO_SLIDE_COUNT;
+  const track = document.getElementById("hero-slides-track");
+  if (track) {
+    track.style.transform = `translateX(-${heroCurrentSlide * 100}%)`;
+  }
+  const dots = document.querySelectorAll("#slider-dots .slider-dot");
+  dots.forEach((dot, i) => {
+    dot.classList.toggle("active", i === heroCurrentSlide);
+  });
+}
+
+function moveHeroSlide(direction) {
+  restartHeroSliderTimer();
+  updateHeroSlider(heroCurrentSlide + direction);
+}
+
+function gotoHeroSlide(index) {
+  restartHeroSliderTimer();
+  updateHeroSlider(index);
+}
+
+function startHeroSliderTimer() {
+  stopHeroSliderTimer();
+  heroSliderTimer = setInterval(() => {
+    updateHeroSlider(heroCurrentSlide + 1);
+  }, 5000);
+}
+
+function stopHeroSliderTimer() {
+  if (heroSliderTimer) {
+    clearInterval(heroSliderTimer);
+    heroSliderTimer = null;
+  }
+}
+
+function restartHeroSliderTimer() {
+  startHeroSliderTimer();
+}
+
+window.moveHeroSlide = moveHeroSlide;
+window.gotoHeroSlide = gotoHeroSlide;
+
+function initHeroSlider() {
+  const slider = document.getElementById("hero-slider");
+  if (!slider) return;
+
+  // Pause on hover
+  slider.addEventListener("mouseenter", stopHeroSliderTimer);
+  slider.addEventListener("mouseleave", startHeroSliderTimer);
+
+  // Touch swipe support for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  slider.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    stopHeroSliderTimer();
+  }, { passive: true });
+
+  slider.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchEndX - touchStartX;
+    if (Math.abs(diff) > 40) {
+      if (diff < 0) {
+        moveHeroSlide(1);
+      } else {
+        moveHeroSlide(-1);
+      }
+    } else {
+      startHeroSliderTimer();
+    }
+  }, { passive: true });
+
+  startHeroSliderTimer();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initHeroSlider);
+} else {
+  initHeroSlider();
+}
+
 // ── Drawer Functions ─────────────────────
 function toggleDrawer() {
   const d = document.getElementById("drawer");
