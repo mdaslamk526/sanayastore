@@ -1351,17 +1351,63 @@ img {
   .tg-cards { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
-  .header-inner { gap: 8px; padding: 10px 12px; }
-  .logo { font-size: 19px; }
-  .nav { display: none; }
-  .header-actions { gap: 6px; }
-  .search-wrap input {
-    width: 125px;
-    font-size: 16px; /* Prevents iOS Safari forced zoom on focus */
-    height: 36px;
-    padding: 0 44px 0 10px;
+  .header-inner {
+    padding: 10px 8px 10px 14px;
+    gap: 8px;
+    justify-content: space-between;
+    width: 100%;
   }
-  .icon-btn, .menu-btn { width: 36px; height: 36px; }
+  .logo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .nav { display: none; }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    justify-content: flex-end;
+  }
+  .search-form-wrap {
+    flex: 1;
+    min-width: 90px;
+    max-width: 210px;
+  }
+  .search-wrap {
+    width: 100%;
+  }
+  .search-wrap input {
+    width: 100%;
+    font-size: 15px;
+    height: 36px;
+    padding: 0 32px 0 12px;
+    border-radius: 18px;
+  }
+  .search-submit-btn {
+    right: 8px;
+  }
+  .search-clear-btn {
+    right: 26px;
+  }
+  .icon-btn {
+    width: 33px;
+    height: 33px;
+    flex-shrink: 0;
+  }
+  .icon-btn svg {
+    width: 17px;
+    height: 17px;
+  }
+  .menu-btn {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    margin-left: 2px;
+  }
   
   /* Hero Mobile: Perfectly Proportioned & Centered */
   .hero {
@@ -1504,10 +1550,12 @@ img {
 }
 
 @media (max-width: 360px) {
-  .header-inner { padding: 8px 10px; gap: 6px; }
-  .logo { font-size: 17px; }
-  .search-wrap input { width: 100px; padding: 0 34px 0 8px; font-size: 16px; }
-  .icon-btn, .menu-btn { width: 34px; height: 34px; }
+  .header-inner { padding: 8px 6px; gap: 6px; }
+  .logo { font-size: 19px; }
+  .icon-btn { display: none; }
+  .search-form-wrap { max-width: 170px; }
+  .search-wrap input { font-size: 14px; padding: 0 30px 0 10px; }
+  .menu-btn { width: 34px; height: 34px; }
   .grid { gap: 8px; }
   .card-body { padding: 10px 8px 12px; }
   .card h3 { font-size: 12.5px; }

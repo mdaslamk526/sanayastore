@@ -1,11 +1,11 @@
 // ════════════════════════════════════════════════
 //  Sanaya Store — Service Worker (Instant Load & Cache)
 // ════════════════════════════════════════════════
-const CACHE_NAME = "sanaya-store-v2";
+const CACHE_NAME = "sanaya-store-v3";
 const CORE_ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=1.2",
+  "./styles.css?v=2.1",
   "./app.js?v=1.2",
   "./products.json",
   "./manifest.json",
@@ -68,3 +68,4 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
+
